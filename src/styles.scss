@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+.top{
+  background-color: yellow;
+  height: 90px;
+}
+
+.yellow{
+  color: white;
+
+}
+.dropdown-toggle::after {
+  display:none;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+  padding-top:1px !important; padding-bottom:0 !important;
+  height: 25px; /* aqui escoges el alto que necesites */
+}
+.navbar {
+  min-height:30px !important; /* aqui escoges el alto que necesites */
+}
+
+
+.top-navbar {
+  list-style: none;
+  float: right;
+}
+
+.top-navbar li {
+  float: left;
+}
+
+
