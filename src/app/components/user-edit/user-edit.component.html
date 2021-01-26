@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mx-auto mt-5">
+      <h1>{{ page_title }}</h1>
+      <p>Modifica tus datos personales de usuario.</p>
+      <hr />
+      <form #usertEditForm="ngForm" (ngSubmit)="onSubmit(usertEditForm)">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputEmail4">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail4"
+              placeholder="Ingresa tu email"
+              #email="ngModel"
+              [(ngModel)]="user.email"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              name="email"
+            />
+            <small
+              *ngIf="!email.valid && email.touched"
+              class="invalid-feedback d-block"
+              >El email no es valido</small
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="Ingresa tu Nombre"
+            #name="ngModel"
+            [(ngModel)]="user.name"
+            required
+            pattern="[a-zA-Z]+"
+            name="name"
+          />
+          <small
+            *ngIf="!name.valid && name.touched"
+            class="invalid-feedback d-block"
+            >El nombre no es valido</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Apellidos</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress2"
+            placeholder="Ingresa tu Apellido"
+            #surname="ngModel"
+            [(ngModel)]="user.surname"
+            required
+            pattern="[a-zA-Z]+"
+            name="surname"
+          />
+          <small
+            *ngIf="!surname.valid && surname.touched"
+            class="invalid-feedback d-block"
+            >El apellido no es valido</small
+          >
+        </div>
+        <div class="mb-3">
+          <label for="validationTextarea">Descripcion</label>
+          <textarea
+            [froalaEditor]
+            class="form-control"
+            id="validationTextarea"
+            placeholder="Ingrese Descripcion "
+            #description="ngModel"
+            [(ngModel)]="user.description"
+
+
+            name="description"
+          ></textarea>
+          <!-- <div class="invalid-feedback">
+            Please enter a message in the textarea. [resetUpload]=resetVar
+          </div> -->
+        </div>
+        <div class="form-group">
+          <div *ngIf="identity && identity.image">
+            <img
+              src="{{ url + 'user/avatar/' + identity.image }}"
+              class="rounded-circle " style="width: 150px;height: 150px;"
+            />
+          </div>
+          <angular-file-uploader
+            [config]="afuConfig"
+            (ApiResponse)="DocUpload($event)"
+          >
+          </angular-file-uploader>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="usertEditForm.invalid"
+        >
+          Guardar Cambios
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
