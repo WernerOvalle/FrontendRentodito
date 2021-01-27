@@ -16,15 +16,18 @@ export class UserEditComponent implements OnInit {
   public status;
   public page_title: string;
   public url;
-  public afuConfig = {
+  /*public validacion1;
+  public validacion2;
+  public validacion3;*/
+  public afuConfig1 = {
     multiple: false,
     formatsAllowed: '.jpg,.png, .gif, .jpeg',
     maxSize: '50',
     uploadAPI: {
-      url: global.url + 'user/upload',
-      headers: {
+      url: global.url + 'user/upload1',
+     /* headers: {
         Authorization: this._userService.getToken()
-      }
+      }*/
     },
     theme: 'attachPin',
     hideProgressBar: false,
@@ -33,12 +36,48 @@ export class UserEditComponent implements OnInit {
     replaceTexts: {
     attachPinBtn: 'Sube tu avatar de usuario...', }
   };
+  public afuConfig2 = {
+    multiple: false,
+    formatsAllowed: '.jpg,.png, .gif, .jpeg',
+    maxSize: '50',
+    uploadAPI: {
+      url: global.url + 'user/upload2',
+    /*  headers: {
+        Authorization: this._userService.getToken()
+      }*/
+    },
+    theme: 'attachPin',
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    replaceTexts: {
+    attachPinBtn: 'Sube tu INE (Frente)...', }
+  };
+  public afuConfig3 = {
+    multiple: false,
+    formatsAllowed: '.jpg,.png, .gif, .jpeg',
+    maxSize: '50',
+    uploadAPI: {
+      url: global.url + 'user/upload3',
+     /* headers: {
+        Authorization: this._userService.getToken()
+      }*/
+    },
+    theme: 'attachPin',
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    replaceTexts: {
+    attachPinBtn: 'Sube tu INE (Reverso)...', }
+  };
   constructor(private _userService: UserService) {
     this.page_title = 'Ajustes';
-    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '');
+    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '','','');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = global.url ;
+
+
     //rellenar object usuario
     this.user = new User(
       this.identity.sub,
@@ -47,13 +86,16 @@ export class UserEditComponent implements OnInit {
       this.identity.role,
       this.identity.email,
       '',
-      this.identity.description,
+      this.identity.ine1,
+      this.identity.ine2,
+      this.identity.punteo,
       this.identity.image
     );
   }
 
   ngOnInit(): void {}
   onSubmit(form) {
+if(this.token){
     this._userService.update(this.token, this.user).subscribe(
       (response) => {
         //console.log(response)
@@ -73,8 +115,14 @@ export class UserEditComponent implements OnInit {
         if (response.changes.email) {
           this.user.email = response.changes.email;
         }
-        if (response.changes.description) {
-          this.user.description = response.changes.description;
+        if (response.changes.ine1) {
+          this.user.ine2 = response.changes.ine1;
+        }
+        if (response.changes.ine2) {
+          this.user.ine2 = response.changes.ine2;
+        }
+        if (response.changes.punteo) {
+          this.user.punteo = response.changes.punteo;
         }
         if (response.changes.image) {
           this.user.image = response.changes.image;
@@ -91,12 +139,47 @@ export class UserEditComponent implements OnInit {
         });
       }
     );
+  }else{
+    Swal.fire({
+      title: 'Error',
+      text: 'Error no tiene permisos ',
+      icon: 'info',
+      confirmButtonText: 'Aceptar',
+    });
   }
-  DocUpload(datos) {
-   /* console.log(datos.body.image);*/
+}
+  DocUpload1(datos) {
+    //console.log(datos.body.image);
 
    /* let data = JSON.parse(datos.body);
 
-   */ this.user.image = datos.body.image;
+   */  if (datos.body.image) {
+     this.user.image = datos.body.image;
+    //this.validacion1=1;
+    }
+   //console.log(this.identity)
+
   }
+  DocUpload2(datos) {
+    // console.log(datos.body.image);
+
+    /* let data = JSON.parse(datos.body);
+
+    */    if (datos.body.image) {
+     this.user.ine1 = datos.body.image;
+    // this.validacion2=1;
+     }
+   }
+   DocUpload3(datos) {
+     //console.log(datos.body.image);
+
+    /* let data = JSON.parse(datos.body);
+
+    */
+
+    if (datos.body.image) {
+      this.user.ine2 = datos.body.image;
+     //this.validacion3=1;
+     }
+   }
 }

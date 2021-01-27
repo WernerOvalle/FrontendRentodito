@@ -130,18 +130,19 @@
     </ul>
 
     <span
-      class="navbar-brand "
+      class="navbar-brand"
       style="cursor: pointer"
       data-toggle="modal"
       data-target="#exampleModal"
       *ngIf="!identity"
       ><i class="fas fa-address-card yellow mb-1"></i
     ></span>
-    <ul class="nav navbar-nav" *ngIf="identity && identity.name">
+    <ul class="nav navbar-nav mr-3" *ngIf="identity && identity.name">
       <li *ngIf="identity && identity.image" class="nav-item">
         <img
           src="{{ url + 'user/avatar/' + identity.image }}"
-          class="rounded-circle " style="width: 20px;height: 20px;"
+          class="rounded-circle"
+          style="width: 20px; height: 20px"
         />
       </li>
       <li class="nav-item dropdown active">
@@ -155,17 +156,30 @@
           aria-expanded="false"
         >
           <strong>
-            <i *ngIf="!identity && !identity.image" class="fas fa-user mr-2"></i
+            <i *ngIf="!identity.image" class="fas fa-user mr-2"></i
             >{{ identity.name + " " + identity.surname }}</strong
           >
         </a>
         <div
-          class="dropdown-menu position-absolute ml-xl-1"
+          class="dropdown-menu position-absolute ml-xl-1 bg-light"
           aria-labelledby="navbarDropdown"
         >
-          <a class="dropdown-item " [routerLink]="['/ajustes']"
-            >Ajustes</a
+          <a class="dropdown-item" [routerLink]="['/Usuarios']"
+            >Mantenimiento <br> Usuarios</a
           >
+          <a class="dropdown-item" [routerLink]="['/Servicios']"
+            >Mantenimiento <br> Servicios</a
+          >
+          <a class="dropdown-item" [routerLink]="['/Personas']"
+            >Mantenimiento <br> Personas</a
+          >
+          <a class="dropdown-item" [routerLink]="['/Tiendas']"
+            >Mantenimiento <br> Tiendas</a
+          >
+          <a class="dropdown-item" [routerLink]="['/Articulos']"
+            >Mantenimiento <br> Articulos</a
+          >
+          <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
           <a class="dropdown-item" [routerLink]="['/logout/1']"
             >Cerrar Sesion</a
           >
@@ -198,7 +212,7 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
-                <div class="col-7 offset-2">
+                <div class="col-12 col-sm-7 ml-5 ml-sm-0 offset-sm-2">
                   <button
                     type="button"
                     class="btn btn-primary btn-lg"
@@ -207,7 +221,7 @@
                     Inicia Sesión
                   </button>
                 </div>
-                <div class="col-3">
+                <div class="col-12 mt-2 ml-5 mt-sm-0 ml-sm-0 col-sm-3 ">
                   <button
                     type="button"
                     class="btn btn-secondary btn-lg"

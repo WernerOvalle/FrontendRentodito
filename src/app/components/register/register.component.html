@@ -82,7 +82,30 @@
             >El apellido no es valido</small
           >
         </div>
+        <div class="form-group">
 
+          <angular-file-uploader
+            [config]="afuConfig1"
+            (ApiResponse)="DocUpload1($event)"
+          >
+          </angular-file-uploader>
+        </div>
+        <div class="form-group">
+
+          <angular-file-uploader
+            [config]="afuConfig2"
+            (ApiResponse)="DocUpload2($event)"
+          >
+          </angular-file-uploader>
+        </div>
+        <div class="form-group">
+
+          <angular-file-uploader
+            [config]="afuConfig3"
+            (ApiResponse)="DocUpload3($event)"
+          >
+          </angular-file-uploader>
+        </div>
         <button
           type="submit"
           class="btn btn-primary"
