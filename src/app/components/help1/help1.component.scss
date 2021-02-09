@@ -1,0 +1,27 @@
+.fondoayuda {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(195, 230, 245, 1) 9%,
+    rgba(53, 146, 255, 0.9335084375547094) 100%
+  );
+}
+
+.azul {
+  color: blue;
+}
+
+@media only screen and (max-width: 1600px) and (min-width: 1450px) {
+  .box1 {
+    width: 350px;
+    height: 350px;
+    margin-top: -50px;
+    margin-left: 100px;
+    padding: 20px;
+    border: 1px solid #00f2ff;
+    position: absolute;
+    background-color: #00f2ff;
+  }
+}
+

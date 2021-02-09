@@ -34,7 +34,7 @@ export class UserEditComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-    attachPinBtn: 'Sube tu avatar de usuario...', }
+    attachPinBtn: 'Foto...', }
   };
   public afuConfig2 = {
     multiple: false,
@@ -51,7 +51,7 @@ export class UserEditComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-    attachPinBtn: 'Sube tu INE (Frente)...', }
+    attachPinBtn: 'INE (frente)...', }
   };
   public afuConfig3 = {
     multiple: false,
@@ -68,11 +68,11 @@ export class UserEditComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-    attachPinBtn: 'Sube tu INE (Reverso)...', }
+    attachPinBtn: 'INE (reverso)...', }
   };
   constructor(private _userService: UserService) {
     this.page_title = 'Ajustes';
-    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '','','');
+    this.user = new User(1, '', '', 'ROLE_USER', '', '','', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = global.url ;
@@ -86,6 +86,7 @@ export class UserEditComponent implements OnInit {
       this.identity.role,
       this.identity.email,
       '',
+      this.identity.telefono,
       this.identity.ine1,
       this.identity.ine2,
       this.identity.punteo,

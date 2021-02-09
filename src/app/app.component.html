@@ -1,33 +1,46 @@
-<div class="top">
-  <div class="container">
-    <div class="row">
-      <div class="col-9 offset-3 col-md-6 col-lg-4 offset-md-4 mt-5 pt-0">
-        <img
-          src="../assets/image.png"
-          [routerLink]="['/inicio']"
-          class="img-fluid"
-          style="width: 65%; position: absolute; cursor: pointer; z-index: 100"
-        />
+
+<div class="header sticky-top" style="z-index: 99">
+  <div class="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-11 offset-2 col-md-6 col-lg-4 offset-md-4 mt-5  pt-3 pt-sm-0">
+          <img
+            src="../assets/image.png"
+            [routerLink]="['/inicio']"
+            class="img-fluid"
+            style="
+              width: 55%;
+              position: absolute;
+              cursor: pointer;
+              z-index: 100;
+              margin-left: 40px;
+            "
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavDropdown"
-    aria-controls="navbarNavDropdown"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown active mr-5">
+  <nav class="navbar navbar-expand-xl navbar-dark bg-primary" >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item mr-5">
+          <a class="nav-link active" [routerLink]="['/help']">
+            <i class="fas fa-question yellow"></i
+          ></a>
+        </li>
+        <!-- <li class="nav-item dropdown active mr-5">
         <a
           class="nav-link dropdown-toggle"
           href="#"
@@ -43,199 +56,220 @@
           class="dropdown-menu position-absolute ml-xl-1"
           style="margin-left: 100px"
           aria-labelledby="navbarDropdown"
-        >
-          <a class="dropdown-item" [routerLink]="['/help']" fragment="help1"
+        > -->
+        <!--Fragment uso
+             <a class="dropdown-item" [routerLink]="['/help']" fragment="help1"
+            >¿Cómo rento un artículo?
+          </a> -->
+        <!-- <a class="dropdown-item" [routerLink]="['/help']"
             >¿Cómo rento un artículo?
           </a>
-          <a class="dropdown-item" [routerLink]="['/help']" fragment="help2"
+          <a class="dropdown-item" [routerLink]="['/help2']"
             >¿Cómo encuentro un artículo?
           </a>
-          <a class="dropdown-item" [routerLink]="['/help']" fragment="help3"
+          <a class="dropdown-item" [routerLink]="['/help3']"
             >¿Dónde rento un artículo?
           </a>
-          <a class="dropdown-item" [routerLink]="['/help']" fragment="help4"
+          <a class="dropdown-item" [routerLink]="['/help4']"
             >¿Dónde están las tiendas RENTODITO?
           </a>
-          <a class="dropdown-item" [routerLink]="['/help']" fragment="help5"
+          <a class="dropdown-item" [routerLink]="['/help2']"
             >¿Cómo abro una tienda RENTODITO?
           </a>
         </div>
-      </li>
-      <li class="nav-item" style="margin-right: 150px">
-        <a class="nav-link active" [routerLink]="['/inicio']"
-          ><strong>INICIO</strong></a
-        >
-      </li>
+      </li> -->
+        <li class="nav-item" style="margin-right: 150px">
+          <a class="nav-link active" [routerLink]="['/inicio']"
+            ><strong>INICIO</strong></a
+          >
+        </li>
 
-      <li class="nav-item dropdown active" style="margin-right: 140px">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <strong>ARTICULOS</strong>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a> -->
-        </div>
-      </li>
-    </ul>
+        <li class="nav-item" style="margin-right: 150px">
+          <a class="nav-link active" [routerLink]="['/articulos']"
+            ><strong>ARTICULOS</strong></a
+          >
+        </li>
+      </ul>
 
-    <ul class="nav navbar-nav">
-      <li class="nav-item dropdown active" style="margin-right: 200px">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <strong> TIENDAS</strong>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav">
-      <li class="nav-item dropdown active mr-5">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <strong> SERVICIOS</strong>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
+      <ul class="nav navbar-nav">
+        <li class="nav-item" style="margin-right: 150px">
+          <a class="nav-link active" [routerLink]="['/tiendas']"
+            ><strong>TIENDAS</strong></a
+          >
+        </li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="nav-item mr-5" >
+          <a class="nav-link active"  data-toggle="modal"
+          data-target="#exampleModal2"
+            ><strong>PARTICULARES</strong></a
+          >
+        </li>
+      </ul>
 
-    <span
-      class="navbar-brand"
-      style="cursor: pointer"
-      data-toggle="modal"
-      data-target="#exampleModal"
-      *ngIf="!identity"
-      ><i class="fas fa-address-card yellow mb-1"></i
-    ></span>
-    <ul class="nav navbar-nav mr-3" *ngIf="identity && identity.name">
-      <li *ngIf="identity && identity.image" class="nav-item">
-        <img
-          src="{{ url + 'user/avatar/' + identity.image }}"
-          class="rounded-circle"
-          style="width: 20px; height: 20px"
-        />
-      </li>
-      <li class="nav-item dropdown active">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <strong>
-            <i *ngIf="!identity.image" class="fas fa-user mr-2"></i
-            >{{ identity.name + " " + identity.surname }}</strong
+      <span
+        class="navbar-brand"
+        style="cursor: pointer"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        *ngIf="!identity"
+        ><i class="fas fa-address-card yellow mb-1"></i
+      ></span>
+      <ul class="nav navbar-nav mr-3" *ngIf="identity && identity.name">
+        <li *ngIf="identity && identity.image" class="nav-item">
+          <img
+            src="{{ url + 'user/avatar/' + identity.image }}"
+            class="rounded-circle"
+            style="width: 20px; height: 20px"
+          />
+        </li>
+        <li class="nav-item dropdown active">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
-        </a>
-        <div
-          class="dropdown-menu position-absolute ml-xl-1 bg-light"
-          aria-labelledby="navbarDropdown"
-        >
-          <a class="dropdown-item" [routerLink]="['/Usuarios']"
-            >Mantenimiento <br> Usuarios</a
-          >
-          <a class="dropdown-item" [routerLink]="['/Servicios']"
-            >Mantenimiento <br> Servicios</a
-          >
-          <a class="dropdown-item" [routerLink]="['/Personas']"
-            >Mantenimiento <br> Personas</a
-          >
-          <a class="dropdown-item" [routerLink]="['/Tiendas']"
-            >Mantenimiento <br> Tiendas</a
-          >
-          <a class="dropdown-item" [routerLink]="['/Articulos']"
-            >Mantenimiento <br> Articulos</a
-          >
-          <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
-          <a class="dropdown-item" [routerLink]="['/logout/1']"
-            >Cerrar Sesion</a
-          >
-        </div>
-      </li>
-    </ul>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Identificate</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
+            <strong>
+              <i *ngIf="!identity.image" class="fas fa-user mr-2"></i
+              >{{ identity.name + " " + identity.surname }}</strong
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
+          </a>
+          <div
+            class="dropdown-menu position-absolute ml-xl-1 bg-light"
+            aria-labelledby="navbarDropdown"
+          >
+            <a class="dropdown-item" [routerLink]="['/Usuarios']"
+              >Mantenimiento <br />
+              Usuarios</a
+            >
+            <a class="dropdown-item" [routerLink]="['/Servicios']"
+              >Mantenimiento <br />
+              Servicios</a
+            >
+            <a class="dropdown-item" [routerLink]="['/Personas']"
+              >Mantenimiento <br />
+              Personas</a
+            >
+            <a class="dropdown-item" [routerLink]="['/Tiendas']"
+              >Mantenimiento <br />
+              Tiendas</a
+            >
+            <a class="dropdown-item" [routerLink]="['/Articulos']"
+              >Mantenimiento <br />
+              Articulos</a
+            >
+            <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>
+            <a class="dropdown-item" [routerLink]="['/logout/1']"
+              >Cerrar Sesion</a
+            >
           </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-sm-7 ml-5 ml-sm-0 offset-sm-2">
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-lg"
-                    [routerLink]="['/login']"
-                  >
-                    Inicia Sesión
-                  </button>
-                </div>
-                <div class="col-12 mt-2 ml-5 mt-sm-0 ml-sm-0 col-sm-3 ">
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-lg"
-                    [routerLink]="['/register']"
-                  >
-                    Registrate
-                  </button>
-                </div>
-              </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-7 ml-5 ml-sm-0 offset-sm-2">
+              <button
+                type="button"
+                class="btn btn-primary btn-lg"
+                [routerLink]="['/login']"
+              >
+                Inicia Sesión
+              </button>
+            </div>
+            <div class="col-12 mt-2 ml-5 mt-sm-0 ml-sm-0 col-sm-3">
+              <button
+                type="button"
+                class="btn btn-secondary btn-lg"
+                [routerLink]="['/register']"
+              >
+                Registrate
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</nav>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-7 ml-5 ml-sm-0 offset-sm-2">
+              <button
+                type="button"
+                class="btn btn-primary btn-lg"
+                [routerLink]="['/login']"
+              >
+               Productos
+              </button>
+            </div>
+            <div class="col-12 mt-2 ml-5 mt-sm-0 ml-sm-0 col-sm-3">
+              <button
+                type="button"
+                class="btn btn-secondary btn-lg"
+                [routerLink]="['/register']"
+              >
+               Servicios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

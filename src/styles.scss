@@ -30,4 +30,8 @@
   float: left;
 }
 
-
+@media screen and (max-width: 480px) {
+  li {
+  margin-top: 10px;
+}
+}

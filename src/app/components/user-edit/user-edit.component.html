@@ -63,6 +63,24 @@
             class="invalid-feedback d-block"
             >El apellido no es valido</small
           >
+        </div> <div class="form-group">
+          <label for="inputPhone">Telefono</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputPhone"
+            placeholder="Ingresa tu Telefono"
+            #phone="ngModel"
+            [(ngModel)]="user.telefono"
+            required
+            pattern="[0-9]+"
+            name="phone"
+          />
+          <small
+            *ngIf="!phone.valid && phone.touched"
+            class="invalid-feedback d-block"
+            >El telefono no es valido</small
+          >
         </div>
         <!-- <div class="mb-3">
           <label for="validationTextarea">Descripcion</label>

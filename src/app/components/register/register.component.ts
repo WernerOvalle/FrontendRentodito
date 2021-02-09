@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-      attachPinBtn: 'Sube tu avatar de usuario...',
+      attachPinBtn: 'Foto...',
     },
   };
   public afuConfig2 = {
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-      attachPinBtn: 'Sube tu INE (Primera Cara)...',
+      attachPinBtn: 'INE (frente)...',
     },
   };
   public afuConfig3 = {
@@ -62,12 +62,12 @@ export class RegisterComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-      attachPinBtn: 'Sube tu INE (Segunda Cara)...',
+      attachPinBtn: 'INE (reverso)...',
     },
   };
   constructor(private _userService: UserService) {
     this.page_title = 'Registrate';
-    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '', '');
+    this.user = new User(1, '', '', 'ROLE_USER', '', '','', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = global.url;

@@ -1,3 +1,4 @@
 export var global ={
-url: 'http://www.rentodito.net/backend/public/'
+//url: 'https://rentodito.net/backend/public/api/'
+url: 'http://api-rest-laravel.test/api/'
 }

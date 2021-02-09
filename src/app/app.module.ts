@@ -17,6 +17,15 @@ import { HelpComponent } from './components/help/help.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { Help2Component } from './components/help2/help2.component';
+import { ArticulosComponent } from './components/articulos/articulos.component';
+import { Help1Component } from './components/help1/help1.component';
+import { TiendasComponent } from './components/tiendas/tiendas.component';
+import { Help3Component } from './components/help3/help3.component';
+import { Help4Component } from './components/help4/help4.component';
+import { Help5Component } from './components/help5/help5.component';
+import { Help6Component } from './components/help6/help6.component';
+
 
 @NgModule({
 
@@ -27,7 +36,16 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     RegisterComponent,
     ErrorComponent,
     HelpComponent,
-    UserEditComponent
+    UserEditComponent,
+    Help2Component,
+    ArticulosComponent,
+    Help1Component,
+    TiendasComponent,
+    Help3Component,
+    Help4Component,
+    Help5Component,
+    Help6Component,
+
   ],
   imports: [
     BrowserModule,
