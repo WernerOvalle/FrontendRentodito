@@ -4,18 +4,10 @@
   <div class=" border-right sidebarColor" id="sidebar-wrapper"  >
     <div class="sidebar-heading"><strong>TIENDAS</strong>  </div>
     <div class="list-group list-group-flush" >
-      <a class="list-group-item list-group-item-action sidebarColor h6">CDMX</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">ESTADO DE MEXICO</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">GUERRERO</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">HIDALGO</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">JALISCO</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">MORELOS</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">NUEVO LEON</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">PUEBLA</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">QUERETARO</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">VERACRUZ</a>
+      <!-- OJO ESTO ES UNA PRUEBA DE PASAR PARAMETROS POR ROUTER LINK -->
+      <!-- <a class="list-group-item list-group-item-action sidebarColor h6" [routerLink]="['/tiendas-detail',tienda.id]" *ngFor="let tienda of tiendas">{{tienda.name}}</a> -->
 
-
+    <a class="list-group-item list-group-item-action sidebarColor h6"  style="cursor: pointer;" (click)="clickAddTodo(tienda.id)" *ngFor="let tienda of tiendas">{{tienda.name}}</a>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -53,14 +45,30 @@
       </div> -->
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" *ngIf="menu==0">
       <img
       src="../../../assets/TIENDAS.jpg"
       class="img-fluid ml-5 mt-5" style="width: 75%;"
       alt="..."
     />
   </div>
-  <!-- /#page-content-wrapper -->
+  <!-- PROPERTY BINDINGS -->
 
+  <!-- <app-tiendas-detail [ide2]="ident"></app-tiendas-detail> -->
+
+
+
+  <div class="container" *ngIf="menu!=0">
+  <div class="card mb-3 mx-5 mt-5"  *ngFor="let deta of detalle">
+    <img class="card-img-top "      src="../../../assets/TIENDAS.jpg" alt="Card image cap" style="width: 75%;">
+    <div class="card-body">
+      <h5 class="card-title">{{deta.name}}</h5>
+      <p class="card-text">{{deta.description}}</p>
+      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+    </div>
+  </div>
+</div>
+
+</div>
 </div>
 

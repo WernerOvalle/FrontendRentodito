@@ -1,0 +1,80 @@
+<div class="container-fluid ">
+  <h1 class="mt-5 mx-5">{{ page_title }}</h1>
+  <hr />
+
+<div class="table-responsive-sm mx-5">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">ROL</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Punteo</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">INE (frente)</th>
+          <th scope="col">INE (reverso)</th>
+          <th scope="col"><span class="ml-5">Acción</span> </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of user">
+
+          <td>{{usuario.name}}</td>
+          <td>{{usuario.surname}}</td>
+          <td>
+            <div class="input-group mb-3">
+              <select class="custom-select" id="inputGroupSelect02">
+                <option selected>{{usuario.role}}</option>
+                <option value="Tendero">TENDERO</option>
+                <option value="Particular-Productos">PARTICULAR-PROD</option>
+                <option value="Particular-Servicios">PARTICULAR-SERV</option>
+                <option value="Cliente">CLIENTE</option>
+              </select>
+
+            </div>
+           </td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.telefono}}</td>
+          <td>
+            <!-- <i class="fas fa-star text-warning"  *ngFor="let item of [].constructor(+usuario.punteo); let i = index"></i> -->
+            <div class="input-group mb-3">
+              <select class="custom-select" id="inputGroupSelect02">
+                <option selected>{{usuario.punteo}}</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
+            </div>
+          </td>
+          <td><img
+            src="{{ url + 'user/avatar/' + usuario.image }}"
+            class="img-thumbnail" style="width: 50px;height: 50px;"
+          /></td>
+          <td><img
+            src="{{ url + 'user/avatar/' + usuario.ine1 }}"
+            class="img-thumbnail" style="width: 50px;height: 50px;"
+          /></td>
+          <td><img
+            src="{{ url + 'user/avatar/' + usuario.ine2 }}"
+            class="img-thumbnail" style="width: 50px;height: 50px;"
+          /></td>
+
+          <td>
+            <span class="btn btn-warning mr-5"><i class="fas fa-edit"></i></span
+            >  </td><td><span class="btn btn-danger "
+            ><i class="fas fa-trash-alt"></i
+          ></span>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

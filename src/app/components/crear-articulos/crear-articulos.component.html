@@ -1,0 +1,167 @@
+<div class="container">
+    <h1 class="mt-5">{{ page_title }}</h1>
+    <hr />
+
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-success float-right mb-3"
+      data-toggle="modal"
+      data-target="#exampleModal3"
+    >
+      <i class="fas fa-plus-circle"></i> Agregar Articulo
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal3"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ingresa Articulo</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <label for="name">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    #name="ngModel"
+                    [(ngModel)]="Articulo.title"
+                    pattern="[A-Za-z0-9\s]+"
+                    required
+                  />
+                  <small
+                    *ngIf="!name.valid && name.touched"
+                    class="invalid-feedback d-block"
+                    >El nombre de la categoría no es válido
+                  </small>
+                </div>
+                <div class="form-group col-12">
+                  <label for="description">Descripción</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="description"
+                    #description="ngModel"
+                    [(ngModel)]="Articulo.content"
+                  />
+                </div>
+                <label for="inputGroupSelect02">Tienda</label>
+                <div class="input-group mb-3">
+
+                    <select class="custom-select" id="inputGroupSelect02"  name="tienda_id"
+                    #tienda_id="ngModel"
+                    [(ngModel)]="Articulo.tienda_id">
+
+                      <option *ngFor="let tienda of tiendas" value="{{tienda.id}}">{{tienda.name}}</option>
+
+                    </select>
+
+                  </div>
+                  <label for="inputGroupSelect02">Categoria</label>
+                  <div class="input-group mb-3">
+
+                      <select class="custom-select" id="inputGroupSelect02" name="categoria_id"
+                      #categoria_id="ngModel"
+                      [(ngModel)]="Articulo.categoria_id">>
+
+                        <option *ngFor="let cate of categories" value="{{cate.id}}">{{cate.name}}</option>
+
+                      </select>
+
+                    </div>
+                <div class="form-group">
+
+                    <angular-file-uploader
+                      [config]="afuConfig1"
+                      (ApiResponse)="DocUpload1($event)"
+                    >
+                    </angular-file-uploader>
+                  </div>
+            </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="categoryForm.invalid"
+                >
+                  Guardar Cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive-sm">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Tienda</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Apartado</th>
+            <th scope="col">Fecha de apartado</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let art of articulos">
+
+            <td>{{art.title}}</td>
+            <td>{{art.content}}</td>
+
+            <td><img
+                src="{{ url + 'articulos/image/' + art.image }}"
+                class="img-thumbnail" style="width: 100px;height: 100px;"
+              /></td>
+
+            <td>{{art.tiendas.name}}</td>
+            <td>{{art.categorias.name}}</td>
+            <td>{{art.user.name}}</td>
+
+            <td>{{art.apartado}}</td>
+            <td>{{art.fecha_apartado}}</td>
+
+            <td>
+              <span class="btn btn-warning mr-5"><i class="fas fa-edit"></i></span
+              ><span class="btn btn-danger"
+                ><i class="fas fa-trash-alt"></i
+              ></span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>

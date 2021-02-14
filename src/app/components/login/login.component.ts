@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private _route: ActivatedRoute
   ) {
     this.page_title = 'Inicia Sesión';
-    this.user = new User(1, '', '', 'ROLE_USER', '', '','', '', '', '', '');
+    this.user = new User(1, '', '', 'CLIENTE', '', '','', '', '', '', '');
   }
 
   ngOnInit(): void {
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
           this._userService.signup(this.user, true).subscribe(
             (response) => {
               this.identity = response;
+              //console.log(this.identity)
               /*PERSISTIR*/
               localStorage.setItem('token', this.token);
               localStorage.setItem('identity', JSON.stringify(this.identity));

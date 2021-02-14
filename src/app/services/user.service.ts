@@ -75,4 +75,12 @@ export class UserService {
       headers: headers,
     });
   }
+
+  getUsuarios(token):Observable<any> {
+
+    let headers = new HttpHeaders()
+    .set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', token);;
+      return this._http.get(this.url + 'user/detail',  { headers: headers });
+
+  }
 }

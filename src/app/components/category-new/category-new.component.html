@@ -1,0 +1,116 @@
+<div class="container">
+  <h1 class="mt-5">{{ page_title }}</h1>
+  <hr />
+
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-success float-right mb-3"
+    data-toggle="modal"
+    data-target="#exampleModal3"
+  >
+    <i class="fas fa-plus-circle"></i> Agregar Categoria
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal3"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingresa Categoria</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="name">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  #name="ngModel"
+                  [(ngModel)]="category.name"
+                  pattern="[a-zA-Z]+"
+                  required
+                />
+                <small
+                  *ngIf="!name.valid && name.touched"
+                  class="invalid-feedback d-block"
+                  >El nombre de la categoría no es válido
+                </small>
+              </div>
+              <div class="form-group col-12">
+                <label for="description">Descripción</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="description"
+                  #description="ngModel"
+                  [(ngModel)]="category.description"
+                />
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="categoryForm.invalid"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive-sm">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+
+          <td>{{category.name}}</td>
+          <td>{{category.description}}</td>
+          <td>
+            <span class="btn btn-warning mr-5"><i class="fas fa-edit"></i></span
+            ><span class="btn btn-danger"
+              ><i class="fas fa-trash-alt"></i
+            ></span>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

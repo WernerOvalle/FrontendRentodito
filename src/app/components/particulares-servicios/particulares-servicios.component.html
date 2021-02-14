@@ -1,0 +1,29 @@
+<div  class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-lg-4 col-xl-6" *ngFor="let ser of servicios">
+      <div class="card-deck">
+        <div class="card" style="width: 18em">
+          <img
+            class="card-img-top"
+            src="{{ url + 'articulos/image/' + ser.image }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ ser.title }}</h5>
+            <p class="card-text">{{ ser.content }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Usuario: <strong>{{ ser.user.name }}</strong>
+            </li>
+          </ul>
+          <!-- <div class="card-body">
+            <a href="#" class="btn btn-primary">Reservar</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /#page-content-wrapper -->
+</div>

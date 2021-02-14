@@ -1,30 +1,25 @@
-<div class="d-flex" id="wrapper" >
-
+<div class="d-flex" id="wrapper">
   <!-- Sidebar -->
-  <div class=" border-right sidebarColor" id="sidebar-wrapper"  >
-    <div class="sidebar-heading"><strong>CATEGORIAS</strong>  </div>
-    <div class="list-group list-group-flush" >
-      <a class="list-group-item list-group-item-action sidebarColor h6">DEPORTES</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">DISFRACES</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">ELECTRICOS</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">HERRAMIENTAS</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">JUGUETES</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">ROPA</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">TECNOLOGIA</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">VEHICULOS</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">VIVIENDA</a>
-      <a class="list-group-item list-group-item-action sidebarColor h6">VARIOS</a>
-
-
+  <div class="border-right sidebarColor" id="sidebar-wrapper">
+    <div class="sidebar-heading"><strong>CATEGORIAS</strong></div>
+    <div class="list-group list-group-flush">
+      <a
+        (click)="clickAddTodo(category.id)"
+        class="list-group-item list-group-item-action sidebarColor h6"
+        style="cursor: pointer"
+        *ngFor="let category of categories"
+        >{{ category.name }}</a
+      >
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
-
-    <nav class="navbar  d-block d-md-none navbar-light bg-light border-bottom">
-      <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-outdent"></i></button>
+    <nav class="navbar d-block d-md-none navbar-light bg-light border-bottom">
+      <button class="btn btn-primary" id="menu-toggle">
+        <i class="fas fa-outdent"></i>
+      </button>
 
       <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,14 +48,42 @@
       </div> -->
     </nav>
 
-    <div class="container-fluid">
+    <div *ngIf="menu == 0" class="container-fluid">
       <img
-      src="../../../assets/fondoArticulos2.jpg"
-      class="img-fluid" style="width: 90%;"
-      alt="..."
-    />
+        src="../../../assets/fondoArticulos2.jpg"
+        class="img-fluid"
+        style="width: 90%"
+        alt="..."
+      />
+    </div>
+    <div *ngIf="menu == 1" class="container mt-5">
+      <div class="row">
+        <div class="col-12 col-lg-4 col-xl-6" *ngFor="let art of articulos">
+          <div class="card-deck">
+            <div class="card" style="width: 18em">
+              <img
+                class="card-img-top"
+                src="{{ url + 'articulos/image/' + art.image }}"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ art.title }}</h5>
+                <p class="card-text">{{ art.content }}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  Tienda: <strong>{{ art.tiendas.name }}</strong>
+                </li>
+              </ul>
+              <div class="card-body">
+                <a href="#" class="btn btn-primary">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- /#page-content-wrapper -->
+    </div>
   </div>
-  <!-- /#page-content-wrapper -->
-
 </div>
-

@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="card mb-3 mx-5 mt-5"  *ngFor="let tienda of tiendas">
+    <img class="card-img-top "      src="../../../assets/TIENDAS.jpg" alt="Card image cap" style="width: 75%;">
+    <div class="card-body">
+      <h5 class="card-title">{{tienda.name}}</h5>
+      <p class="card-text">{{tienda.description}}</p>
+      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+    </div>
+  </div>
+</div>

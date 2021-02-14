@@ -72,7 +72,7 @@ export class UserEditComponent implements OnInit {
   };
   constructor(private _userService: UserService) {
     this.page_title = 'Ajustes';
-    this.user = new User(1, '', '', 'ROLE_USER', '', '','', '', '', '', '');
+    this.user = new User(1, '', '', 'CLIENTE', '', '','', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = global.url ;
