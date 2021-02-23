@@ -50,7 +50,7 @@
                 <small
                   *ngIf="!name.valid && name.touched"
                   class="invalid-feedback d-block"
-                  >El nombre de la categoría no es válido
+                  >El nombre del articulo no es válido
                 </small>
               </div>
               <div class="form-group col-12">
@@ -241,7 +241,7 @@
               <small
                 *ngIf="!name.valid && name.touched"
                 class="invalid-feedback d-block"
-                >El nombre de la categoría no es válido
+                >El nombre del articulo no es válido
               </small>
             </div>
             <div class="form-group col-12">
@@ -289,7 +289,7 @@
                 [(ngModel)]="articulos2.tienda_id"
               >
                 <option *ngFor="let tienda of tiendas" value="{{ tienda.id }}">
-                  {{ tienda.name }}
+                  {{ tienda.id+' - '+tienda.name }}
                 </option>
               </select>
             </div>

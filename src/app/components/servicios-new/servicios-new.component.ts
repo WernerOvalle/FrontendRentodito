@@ -69,7 +69,8 @@ public afuConfig1 = {
     //console.log(this.identity)
   }
   onSubmit(form) {
-  //  console.log(  this.tiendas);
+    this.servicio.user_id=this.identity.sub;
+  console.log(  this.servicio);
   if (
     this.validacion1 == 1
   ) {

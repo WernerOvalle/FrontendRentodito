@@ -14,7 +14,7 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngIf="art.tienda_id">
-              Tienda: <strong>{{art.tiendas.id+' - '+art.tiendas.name }}</strong>  Estado: <br>
+              Tienda: <strong>{{art.tiendas.id+' - '+art.tiendas.name }}</strong>  Estado: {{art.tiendas.estado }} <br>
               {{ art.tiendas.description }}
             </li>
             <li class="list-group-item" *ngIf="!art.tienda_id">
@@ -40,7 +40,12 @@
             <h5 class="card-title">Servicio - {{ ser.title }} </h5>
             <p class="card-text">{{ ser.content }}</p>
           </div>
+          <ul class="list-group list-group-flush">
 
+            <li class="list-group-item" >
+             Usuario:<strong> {{ ser.user.name+' '+ser.user.surname }}</strong>
+                </li>
+          </ul>
 
         </div>
       </div>

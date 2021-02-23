@@ -208,8 +208,8 @@
                     id="inputGroupSelect02"
                     [(ngModel)]="usuario.tienda_id"
                   >
-                    <option *ngIf="usuario.tiendas" [value]="usuario.tiendas.id" selected>{{ usuario.tiendas.name }}</option>
-                    <option *ngFor="let tiend of tiendas" [value]="tiend.id">{{tiend.name}}</option>
+
+                    <option *ngFor="let tiend of tiendas" [value]="tiend.id">{{tiend.id+' - '+tiend.name}}</option>
 
                   </select>
                 </div>

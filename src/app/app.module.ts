@@ -34,7 +34,7 @@ import { TiendasDetailComponent } from './components/tiendas-detail/tiendas-deta
 import { ParticularesServiciosComponent } from './components/particulares-servicios/particulares-servicios.component';
 import { ParticularesProductosComponent } from './components/particulares-productos/particulares-productos.component';
 import { ListadoBusquedaComponent } from './components/listado-busqueda/listado-busqueda.component';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -77,7 +77,8 @@ import { ListadoBusquedaComponent } from './components/listado-busqueda/listado-
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() , AngularFileUploaderModule,
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
