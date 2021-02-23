@@ -7,7 +7,7 @@
       <!-- OJO ESTO ES UNA PRUEBA DE PASAR PARAMETROS POR ROUTER LINK -->
       <!-- <a class="list-group-item list-group-item-action sidebarColor h6" [routerLink]="['/tiendas-detail',tienda.id]" *ngFor="let tienda of tiendas">{{tienda.name}}</a> -->
 
-    <a class="list-group-item list-group-item-action sidebarColor h6"  style="cursor: pointer;" (click)="clickAddTodo(tienda.id)" *ngFor="let tienda of tiendas">{{tienda.name}}</a>
+    <a class="list-group-item list-group-item-action sidebarColor h6"  style="cursor: pointer;" (click)="clickAddTodo(estado.estado)" *ngFor="let estado of estados">{{estado.estado}}</a>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -48,7 +48,7 @@
     <div class="container-fluid" *ngIf="menu==0">
       <img
       src="../../../assets/TIENDAS.jpg"
-      class="img-fluid ml-5 mt-5" style="width: 75%;"
+      class="img-fluid ml-5 mt-5" style="width: 72%;"
       alt="..."
     />
   </div>
@@ -58,17 +58,63 @@
 
 
 
-  <div class="container" *ngIf="menu!=0">
-  <div class="card mb-3 mx-5 mt-5"  *ngFor="let deta of detalle">
-    <img class="card-img-top "      src="../../../assets/TIENDAS.jpg" alt="Card image cap" style="width: 75%;">
-    <div class="card-body">
-      <h5 class="card-title">{{deta.name}}</h5>
-      <p class="card-text">{{deta.description}}</p>
-      <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-    </div>
-  </div>
-</div>
+  <div class="container mt-5" *ngIf="menu==1">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-4" *ngFor="let deta of detalle">
+        <div class="card 3  " >
+          <img     src="{{ url + 'articulos/image/' + deta.image }}" class="card-img-top" alt="..." style="max-height: 200px;">
+          <div class="card-body">
+            <h5 class="card-title">{{deta.name}}</h5>
+                <p class="card-text">{{deta.description}}</p>
+          </div>
 
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"> <button  class="btn btn-primary" (click)="verArticulos(deta.id)">Ver Articulos</button></li>
+
+          </ul>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+</div>
+<div *ngIf="menu == 2" class="container mt-5">
+  <div class="row">
+    <ng-container *ngFor="let art of articulos">
+    <div class="col-12 col-lg-4 col-xl-6" >
+      <div class="card-deck" >
+        <div class="card" style="width: 18em">
+          <img
+            class="card-img-top"
+            src="{{ url + 'articulos/image/' + art.image }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ art.title }}</h5>
+            <p class="card-text">{{ art.content }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Tienda: <strong>{{ art.tiendas.name }}</strong> <br>
+              {{ art.tiendas.description }}
+            </li>
+
+          </ul>
+          <div class="card-body">
+            <a (click)="reservar(art)" *ngIf="art.apartado==0"class="btn btn-primary">Reservar</a>
+            <button  *ngIf="art.apartado==1"class="btn btn-secondary" disabled>Reservado</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  </div>
+
+  <!-- /#page-content-wrapper -->
+</div>
 </div>
 </div>
 

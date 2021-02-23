@@ -1,129 +1,319 @@
 <div class="container">
-    <h1 class="mt-5">{{ page_title }}</h1>
-    <hr />
+  <h1 class="mt-5">{{ page_title }}</h1>
+  <hr />
 
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-success float-right mb-3"
-      data-toggle="modal"
-      data-target="#exampleModal3"
-    >
-      <i class="fas fa-plus-circle"></i> Agregar Tienda
-    </button>
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-success float-right mb-3"
+    data-toggle="modal"
+    data-target="#exampleModal3"
+  >
+    <i class="fas fa-plus-circle"></i> Agregar Tienda
+  </button>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal3"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ingresa Tienda</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
-              <div class="form-row">
-                <div class="form-group col-12">
-                  <label for="name">Nombre</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="name"
-                    #name="ngModel"
-                    [(ngModel)]="tienda.name"
-                    pattern="[a-zA-Z]+"
-                    required
-                  />
-                  <small
-                    *ngIf="!name.valid && name.touched"
-                    class="invalid-feedback d-block"
-                    >El nombre de la categoría no es válido
-                  </small>
-                </div>
-                <div class="form-group col-12">
-                  <label for="description">Descripción</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="description"
-                    #description="ngModel"
-                    [(ngModel)]="tienda.description"
-                  />
-                </div>
-                <div class="form-group">
-
-                    <angular-file-uploader
-                      [config]="afuConfig1"
-                      (ApiResponse)="DocUpload1($event)"
-                    >
-                    </angular-file-uploader>
-                  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal3"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingresa Tienda</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="name">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  #name="ngModel"
+                  [(ngModel)]="tienda.name"
+                  required
+                />
+                <small
+                  *ngIf="!name.valid && name.touched"
+                  class="invalid-feedback d-block"
+                  >El nombre de la categoría no es válido
+                </small>
+              </div>
+              <div class="form-group col-12">
+                <label for="description">Descripción</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="description"
+                  #description="ngModel"
+                  [(ngModel)]="tienda.description"
+                />
+              </div>
+              <div class="form-group col-12">
+                <label for="inputGroupSelect02">Estado</label>
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect02"
+                  name="tienda_id"
+                  #estado="ngModel"
+                  [(ngModel)]="tienda.estado"
+                >
+                <option value="Aguascalientes">Aguascalientes</option>
+                <option value="Baja California">Baja California</option>
+                <option value="Baja California Sur">
+                  Baja California Sur
+                </option>
+                <option value="Campeche">Campeche</option>
+                <option value="Coahuila de Zaragoza">
+                  Coahuila de Zaragoza
+                </option>
+                <option value="Colima">Colima</option>
+                <option value="Chiapas">Chiapas</option>
+                <option value="Chihuahua">Chihuahua</option>
+                <option value="Distrito Federal">Distrito Federal</option>
+                <option value="Durango">Durango</option>
+                <option value="Guanajuato">Guanajuato</option>
+                <option value="Guerrero">Guerrero</option>
+                <option value="Hidalgo">Hidalgo</option>
+                <option value="Jalisco">Jalisco</option>
+                <option value="CDMX">CDMX</option>
+                <option value="Michoacán de Ocampo">
+                  Michoacán de Ocampo
+                </option>
+                <option value="Morelos">Morelos</option>
+                <option value="Nayarit">Nayarit</option>
+                <option value="Nuevo Leon">Nuevo León</option>
+                <option value="Oaxaca">Oaxaca</option>
+                <option value="Puebla">Puebla</option>
+                <option value="Querétaro">Queretaro</option>
+                <option value="Quintana Roo">Quintana Roo</option>
+                <option value="San Luis Potosí">San Luis Potosi</option>
+                <option value="Sinaloa">Sinaloa</option>
+                <option value="Sonora">Sonora</option>
+                <option value="Tabasco">Tabasco</option>
+                <option value="Tamaulipas">Tamaulipas</option>
+                <option value="Tlaxcala">Tlaxcala</option>
+                <option value="Veracruz de Ignacio de la Llave">
+                  Veracruz de Ignacio de la Llave
+                </option>
+                <option value="Yucatán">Yucatan</option>
+                <option value="Zacatecas">Zacatecas</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <angular-file-uploader
+                  [config]="afuConfig1"
+                  (ApiResponse)="DocUpload1($event)"
+                >
+                </angular-file-uploader>
+              </div>
             </div>
 
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Cerrar
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  [disabled]="categoryForm.invalid"
-                >
-                  Guardar Cambios
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cerrar
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="categoryForm.invalid"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="table-responsive-sm">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
+  <div class="table-responsive-sm">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tienda of tiendas">
+          <td>{{ tienda.name }}</td>
+          <td>{{ tienda.description }}</td>
+          <td>{{ tienda.estado }}</td>
+          <td>
+            <img
+              src="{{ url + 'articulos/image/' + tienda.image }}"
+              class="img-thumbnail"
+              style="width: 100px; height: 100px"
+            />
+          </td>
+          <td>
+            <span
+              class="btn btn-warning mr-5"
+              data-toggle="modal"
+              data-target="#exampleModal4"
+              (click)="actualizarModel(tienda)"
+              ><i class="fas fa-edit"></i></span
+            ><span class="btn btn-danger" (click)="eliminar(tienda.id)"
+              ><i class="fas fa-trash-alt"></i
+            ></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tienda of tiendas">
+<!-- Modal -->
+<div
+  *ngIf="tienda2"
+  class="modal fade"
+  id="exampleModal4"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualiza Tienda</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #category2Form="ngForm" (ngSubmit)="onSubmit2(category2Form)">
+          <div class="form-row">
+            <div class="form-group col-12">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                #name="ngModel"
+                [(ngModel)]="tienda2.name"
+                pattern="[a-zA-Z]+"
+                required
+              />
+              <small
+                *ngIf="!name.valid && name.touched"
+                class="invalid-feedback d-block"
+                >El nombre de la categoría no es válido
+              </small>
+            </div>
+            <div class="form-group col-12">
+              <label for="description">Descripción</label>
+              <input
+                type="text"
+                class="form-control"
+                name="description"
+                #description="ngModel"
+                [(ngModel)]="tienda2.description"
+              />
+            </div>
+            <div class="form-group col-12">
+              <label for="inputGroupSelect02">Estado</label>
+              <select
+                class="custom-select"
+                id="inputGroupSelect02"
+                name="tienda_id"
+                #estado="ngModel"
+                [(ngModel)]="tienda2.estado"
+              >
+                <option value="Aguascalientes">Aguascalientes</option>
+                <option value="Baja California">Baja California</option>
+                <option value="Baja California Sur">
+                  Baja California Sur
+                </option>
+                <option value="Campeche">Campeche</option>
+                <option value="Coahuila de Zaragoza">
+                  Coahuila de Zaragoza
+                </option>
+                <option value="Colima">Colima</option>
+                <option value="Chiapas">Chiapas</option>
+                <option value="Chihuahua">Chihuahua</option>
+                <option value="Distrito Federal">Distrito Federal</option>
+                <option value="Durango">Durango</option>
+                <option value="Guanajuato">Guanajuato</option>
+                <option value="Guerrero">Guerrero</option>
+                <option value="Hidalgo">Hidalgo</option>
+                <option value="Jalisco">Jalisco</option>
+                <option value="CDMX">CDMX</option>
+                <option value="Michoacan de Ocampo">
+                  Michoacan de Ocampo
+                </option>
+                <option value="Morelos">Morelos</option>
+                <option value="Nayarit">Nayarit</option>
+                <option value="Nuevo Leon">Nuevo León</option>
+                <option value="Oaxaca">Oaxaca</option>
+                <option value="Puebla">Puebla</option>
+                <option value="Queretaro">Queretaro</option>
+                <option value="Quintana Roo">Quintana Roo</option>
+                <option value="San Luis Potosi">San Luis Potosi</option>
+                <option value="Sinaloa">Sinaloa</option>
+                <option value="Sonora">Sonora</option>
+                <option value="Tabasco">Tabasco</option>
+                <option value="Tamaulipas">Tamaulipas</option>
+                <option value="Tlaxcala">Tlaxcala</option>
+                <option value="Veracruz de Ignacio de la Llave">
+                  Veracruz de Ignacio de la Llave
+                </option>
+                <option value="Yucatan">Yucatan</option>
+                <option value="Zacatecas">Zacatecas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <angular-file-uploader
+                [config]="afuConfig1"
+                (ApiResponse)="DocUpload2($event)"
+              >
+              </angular-file-uploader>
+            </div>
+          </div>
 
-            <td>{{tienda.name}}</td>
-            <td>{{tienda.description}}</td>
-            <td><img
-                src="{{ url + 'articulos/image/' + tienda.image }}"
-                class="img-thumbnail" style="width: 100px;height: 100px;"
-              /></td>
-            <td>
-              <span class="btn btn-warning mr-5"><i class="fas fa-edit"></i></span
-              ><span class="btn btn-danger"
-                ><i class="fas fa-trash-alt"></i
-              ></span>
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="category2Form.invalid"
+            >
+              Actualizar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
+</div>

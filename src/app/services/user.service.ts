@@ -83,4 +83,27 @@ export class UserService {
       return this._http.get(this.url + 'user/detail',  { headers: headers });
 
   }
+
+  delete(token,id):Observable<any> {
+
+    let headers = new HttpHeaders()
+    .set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', token);;
+      return this._http.delete(this.url + 'user/'+id,  { headers: headers });
+
+  }
+
+
+
+
+  udpate2(token, usr, id):Observable<any> {
+
+    let json = JSON.stringify(usr);
+    let params = 'json=' + json;
+//console.log(usr)
+    let headers = new HttpHeaders()
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Authorization', token);
+      return this._http.put(this.url + 'user/update2/'+id, params, { headers: headers });
+
+  }
 }

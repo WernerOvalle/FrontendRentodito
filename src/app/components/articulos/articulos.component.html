@@ -58,8 +58,9 @@
     </div>
     <div *ngIf="menu == 1" class="container mt-5">
       <div class="row">
-        <div class="col-12 col-lg-4 col-xl-6" *ngFor="let art of articulos">
-          <div class="card-deck">
+        <ng-container *ngFor="let art of articulos">
+        <div class="col-12 col-lg-4 col-xl-6" *ngIf="art.tienda_id!=null">
+          <div class="card-deck" >
             <div class="card" style="width: 18em">
               <img
                 class="card-img-top"
@@ -72,15 +73,19 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  Tienda: <strong>{{ art.tiendas.name }}</strong>
+                  Tienda: <strong>{{ art.tiendas.name }}</strong> <br>
+                  {{ art.tiendas.description }}
                 </li>
+
               </ul>
               <div class="card-body">
-                <a href="#" class="btn btn-primary">Reservar</a>
+                <a (click)="reservar(art)" *ngIf="art.apartado==0"class="btn btn-primary">Reservar</a>
+                <button  *ngIf="art.apartado==1"class="btn btn-secondary" disabled>Reservado</button>
               </div>
             </div>
           </div>
         </div>
+      </ng-container>
       </div>
 
       <!-- /#page-content-wrapper -->

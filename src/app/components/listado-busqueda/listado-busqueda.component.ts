@@ -1,46 +1,78 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
-import * as jQuery from 'jquery';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ArticuloService } from '../../services/articulos.service';
-import { global } from '../../services/global';
-import Swal from 'sweetalert2';
+import { ServicioService } from '../../services/servicios.service';
+import { Articulo } from '../../models/articulos';
 import { UserService } from '../../services/user.service';
+import Swal from 'sweetalert2';
+import * as jQuery from 'jquery';
+import { global } from '../../services/global';
 @Component({
-  selector: 'app-particulares-productos',
-  templateUrl: './particulares-productos.component.html',
-  styleUrls: ['./particulares-productos.component.scss'],
-  providers: [ArticuloService,UserService]
+  selector: 'app-listado-busqueda',
+  templateUrl: './listado-busqueda.component.html',
+  styleUrls: ['./listado-busqueda.component.scss'],
+  providers: [ArticuloService,ServicioService],
 })
-export class ParticularesProductosComponent implements OnInit {
+export class ListadoBusquedaComponent implements OnInit {
+public articulos;
+public Servicios;
 public url;
 public token;
-  public articulos2;
-  public cliente;
-  constructor( private _articuloService: ArticuloService, private _userService: UserService) {
-this.url=global.url;
-this.token = this._userService.getToken();
-this.cliente = this._userService.getIdentity();
+public cliente;
+  constructor(
+    private _route: ActivatedRoute,
+    private _articuloService: ArticuloService,
+    private _servicioService: ServicioService,
+    private _router: Router,
+    private _userService: UserService
+
+
+  ) {
+    this.url = global.url;
+    this.token = this._userService.getToken();
+    this.cliente = this._userService.getIdentity();
    }
 
-  ngOnInit(): void {
-    this.getArticulosByParticular();
+  ngOnInit(): void { this.getArticulos(); this.getServicios(); //console.log(this.cliente.sub)
+  }
+ getArticulos() {
+    this._route.params.subscribe((params) => {
+     let id = params['name'];
+
+     //console.log(id);
+    // servicios/name/
+      this._articuloService.getArticulosByName(id).subscribe(
+        (response) => {
+          this.articulos = response.Articulos;
+        //  console.log(this.articulos);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
   }
 
-  getArticulosByParticular(){
-    this._articuloService.getArticulosByParticular().subscribe(
-      response=>{
-        if(response.status=="success"){
-          this.articulos2 =response.Articulos;
-          console.log(this.articulos2)
+  getServicios() {
+    this._route.params.subscribe((params) => {
+     let id = params['name'];
+
+     //console.log(id);
+    // servicios/name/
+      this._servicioService.getServiciosByName(id).subscribe(
+        (response) => {
+          this.Servicios = response.Servicios;
+        //  console.log(this.Servicios);
+        },
+        (error) => {
+          console.log(error);
         }
-      },
-      error=>{
-        console.log(error);
-      }
-    )
+      );
+    });
   }
-  reservar(art) {
-    let articuloReserva = JSON.parse(JSON.stringify(art));
+
+  reservar(art2) {
+    let articuloReserva = JSON.parse(JSON.stringify(art2));
     delete articuloReserva.categorias;
     delete articuloReserva.tiendas;
     delete articuloReserva.user;
@@ -70,8 +102,9 @@ this.cliente = this._userService.getIdentity();
         articuloReserva.fecha_apartado = jQuery('#exampleinputdate').val();
         //console.log(art.fecha_apartado);
         articuloReserva.apartado = 1;
-        //console.log(art);
-        articuloReserva.cliente = that.cliente.sub+' - '+that.cliente.name+' '+that.cliente.surname;
+
+       articuloReserva.cliente = that.cliente.sub+' - '+that.cliente.name+' '+that.cliente.surname;
+      // console.log(  articuloReserva);
         that._articuloService.udpate(that.token, articuloReserva, articuloReserva.id).subscribe(
           (response) => {
             if (response.status == 'success') {
@@ -82,7 +115,7 @@ this.cliente = this._userService.getIdentity();
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
               }).then(function () {});
-              that.getArticulosByParticular();
+              that.getArticulos();
             } else {
               Swal.fire({
                 title: 'Error al hacer la reserva',
@@ -95,7 +128,7 @@ this.cliente = this._userService.getIdentity();
           (error) => {
             Swal.fire({
               title: 'Error',
-              text: 'verifique la fecha',
+              text: 'Verifique la fecha',
               icon: 'error',
               confirmButtonText: 'Aceptar',
             });

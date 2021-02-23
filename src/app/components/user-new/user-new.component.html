@@ -1,80 +1,551 @@
-<div class="container-fluid ">
+<div class="container-fluid">
   <h1 class="mt-5 mx-5">{{ page_title }}</h1>
   <hr />
+  <ul class="nav nav-tabs mx-5 mb-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link active"
+        id="home-tab"
+        data-toggle="tab"
+        href="#Administradores"
+        role="tab"
+        aria-controls="Administradores"
+        aria-selected="true"
+        >Administradores</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="profile-tab"
+        data-toggle="tab"
+        href="#Tenderos"
+        role="tab"
+        aria-controls="Tenderos"
+        aria-selected="false"
+        >Tenderos</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="contact-tab"
+        data-toggle="tab"
+        href="#pp"
+        role="tab"
+        aria-controls="pp"
+        aria-selected="false"
+        >Particulares-Productos</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="contact-tab"
+        data-toggle="tab"
+        href="#ps"
+        role="tab"
+        aria-controls="ps"
+        aria-selected="false"
+        >Particulares-Servicios</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link"
+        id="contact-tab"
+        data-toggle="tab"
+        href="#cliente"
+        role="tab"
+        aria-controls="cliente"
+        aria-selected="false"
+        >Clientes</a
+      >
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="Administradores"
+      role="tabpanel"
+      aria-labelledby="home-tab"
+    >
+      <div class="table-responsive-sm mx-5">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">ROL</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Avatar</th>
+              <th scope="col">INE (frente)</th>
+              <th scope="col">INE (reverso)</th>
+              <th scope="col"><span class="ml-5">Acción</span></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
 
-<div class="table-responsive-sm mx-5">
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
+            <tr *ngFor="let usuario of user">
+              <ng-container *ngIf="usuario.role=='_ADMINISTRADOR_'">
+                <td>{{ usuario.id }}</td>
+              <td>{{ usuario.name }}</td>
+              <td>{{ usuario.surname }}</td>
+              <td>
+                <div class="input-group mb-3">
+                  <select
+                    class="custom-select"
+                    id="inputGroupSelect02"
+                    [(ngModel)]="usuario.role"
+                  >
+                    <option selected>{{ usuario.role }}</option>
+                    <option value="TENDERO">TENDERO</option>
+                    <option value="PARTICULAR-PROD">PARTICULAR-PROD</option>
+                    <option value="PARTICULAR-SERV">PARTICULAR-SERV</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                  </select>
+                </div>
+              </td>
+              <td>{{ usuario.email }}</td>
+              <td>{{ usuario.telefono }}</td>
 
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">ROL</th>
-          <th scope="col">Correo</th>
-          <th scope="col">Telefono</th>
-          <th scope="col">Punteo</th>
-          <th scope="col">Avatar</th>
-          <th scope="col">INE (frente)</th>
-          <th scope="col">INE (reverso)</th>
-          <th scope="col"><span class="ml-5">Acción</span> </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let usuario of user">
+              <td>
+                <img
+                  (click)="change(usuario.image)"
+                  src="{{ url + 'user/avatar/' + usuario.image }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine1)"
+                  src="{{ url + 'user/avatar/' + usuario.ine1 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine2)"
+                  src="{{ url + 'user/avatar/' + usuario.ine2 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
 
-          <td>{{usuario.name}}</td>
-          <td>{{usuario.surname}}</td>
-          <td>
-            <div class="input-group mb-3">
-              <select class="custom-select" id="inputGroupSelect02">
-                <option selected>{{usuario.role}}</option>
-                <option value="Tendero">TENDERO</option>
-                <option value="Particular-Productos">PARTICULAR-PROD</option>
-                <option value="Particular-Servicios">PARTICULAR-SERV</option>
-                <option value="Cliente">CLIENTE</option>
-              </select>
+              <td>
+                <span class="btn btn-warning mr-5" (click)="update(usuario)"
+                  ><i class="fas fa-edit"></i
+                ></span>
+              </td>
+              <td>
+                <span class="btn btn-danger" (click)="eliminar(usuario.id)"
+                  ><i class="fas fa-trash-alt"></i
+                ></span>
+              </td>
+            </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="Tenderos"
+      role="tabpanel"
+      aria-labelledby="profile-tab"
+    >
+      <div class="table-responsive-sm mx-5">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">ROL</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Tienda</th>
+              <th scope="col">Avatar</th>
+              <th scope="col">INE (frente)</th>
+              <th scope="col">INE (reverso)</th>
+              <th scope="col"><span class="ml-5">Acción</span></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of user">
+              <ng-container *ngIf="usuario.role=='TENDERO'">
+                <td>{{ usuario.id }}</td>
+              <td>{{ usuario.name }}</td>
+              <td>{{ usuario.surname }}</td>
+              <td>
+                <div class="input-group mb-3">
+                  <select
+                    class="custom-select"
+                    id="inputGroupSelect02"
+                    [(ngModel)]="usuario.role"
+                  >
+                    <option selected>{{ usuario.role }}</option>
+                    <option value="TENDERO">TENDERO</option>
+                    <option value="PARTICULAR-PROD">PARTICULAR-PROD</option>
+                    <option value="PARTICULAR-SERV">PARTICULAR-SERV</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                  </select>
+                </div>
+              </td>
+              <td>{{ usuario.email }}</td>
+              <td>{{ usuario.telefono }}</td>
+              <td>
+                <!-- <i class="fas fa-star text-warning"  *ngFor="let item of [].constructor(+usuario.punteo); let i = index"></i> -->
+                <div class="input-group mb-3">
+                  <select
+                    class="custom-select"
+                    id="inputGroupSelect02"
+                    [(ngModel)]="usuario.tienda_id"
+                  >
+                    <option *ngIf="usuario.tiendas" [value]="usuario.tiendas.id" selected>{{ usuario.tiendas.name }}</option>
+                    <option *ngFor="let tiend of tiendas" [value]="tiend.id">{{tiend.name}}</option>
 
-            </div>
-           </td>
-          <td>{{usuario.email}}</td>
-          <td>{{usuario.telefono}}</td>
-          <td>
-            <!-- <i class="fas fa-star text-warning"  *ngFor="let item of [].constructor(+usuario.punteo); let i = index"></i> -->
-            <div class="input-group mb-3">
-              <select class="custom-select" id="inputGroupSelect02">
-                <option selected>{{usuario.punteo}}</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
+                  </select>
+                </div>
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.image)"
+                  src="{{ url + 'user/avatar/' + usuario.image }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine1)"
+                  src="{{ url + 'user/avatar/' + usuario.ine1 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine2)"
+                  src="{{ url + 'user/avatar/' + usuario.ine2 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
 
-            </div>
-          </td>
-          <td><img
-            src="{{ url + 'user/avatar/' + usuario.image }}"
-            class="img-thumbnail" style="width: 50px;height: 50px;"
-          /></td>
-          <td><img
-            src="{{ url + 'user/avatar/' + usuario.ine1 }}"
-            class="img-thumbnail" style="width: 50px;height: 50px;"
-          /></td>
-          <td><img
-            src="{{ url + 'user/avatar/' + usuario.ine2 }}"
-            class="img-thumbnail" style="width: 50px;height: 50px;"
-          /></td>
+              <td>
+                <span class="btn btn-warning mr-5" (click)="update(usuario)"
+                  ><i class="fas fa-edit"></i
+                ></span>
+              </td>
+              <td>
+                <span class="btn btn-danger" (click)="eliminar(usuario.id)"
+                  ><i class="fas fa-trash-alt"></i
+                ></span>
+              </td>
+              </ng-container
+              >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pp"
+      role="tabpanel"
+      aria-labelledby="contact-tab"
+    >
+      <div class="table-responsive-sm mx-5">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">ROL</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Telefono</th>
 
-          <td>
-            <span class="btn btn-warning mr-5"><i class="fas fa-edit"></i></span
-            >  </td><td><span class="btn btn-danger "
-            ><i class="fas fa-trash-alt"></i
-          ></span>
-          </td>
-        </tr>
+              <th scope="col">Avatar</th>
+              <th scope="col">INE (frente)</th>
+              <th scope="col">INE (reverso)</th>
+              <th scope="col"><span class="ml-5">Acción</span></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of user">
+              <ng-container *ngIf="usuario.role=='PARTICULAR-PROD'">
+                <td>{{ usuario.id }}</td>
+              <td>{{ usuario.name }}</td>
+              <td>{{ usuario.surname }}</td>
+              <td>
+                <div class="input-group mb-3">
+                  <select
+                    class="custom-select"
+                    id="inputGroupSelect02"
+                    [(ngModel)]="usuario.role"
+                  >
+                    <option selected>{{ usuario.role }}</option>
+                    <option value="TENDERO">TENDERO</option>
+                    <option value="PARTICULAR-PROD">PARTICULAR-PROD</option>
+                    <option value="PARTICULAR-SERV">PARTICULAR-SERV</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                  </select>
+                </div>
+              </td>
+              <td>{{ usuario.email }}</td>
+              <td>{{ usuario.telefono }}</td>
 
-      </tbody>
-    </table>
+              <td>
+                <img
+                  (click)="change(usuario.image)"
+                  src="{{ url + 'user/avatar/' + usuario.image }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine1)"
+                  src="{{ url + 'user/avatar/' + usuario.ine1 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine2)"
+                  src="{{ url + 'user/avatar/' + usuario.ine2 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+
+              <td>
+                <span class="btn btn-warning mr-5" (click)="update(usuario)"
+                  ><i class="fas fa-edit"></i
+                ></span>
+              </td>
+              <td>
+                <span class="btn btn-danger" (click)="eliminar(usuario.id)"
+                  ><i class="fas fa-trash-alt"></i
+                ></span>
+              </td>
+              </ng-container
+              >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="ps"
+      role="tabpanel"
+      aria-labelledby="contact-tab"
+    >
+      <div class="table-responsive-sm mx-5">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">ROL</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Telefono</th>
+
+              <th scope="col">Avatar</th>
+              <th scope="col">INE (frente)</th>
+              <th scope="col">INE (reverso)</th>
+              <th scope="col"><span class="ml-5">Acción</span></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of user">
+              <ng-container *ngIf="usuario.role=='PARTICULAR-SERV'">
+                <td>{{ usuario.id }}</td>
+              <td>{{ usuario.name }}</td>
+              <td>{{ usuario.surname }}</td>
+              <td>
+                <div class="input-group mb-3">
+                  <select
+                    class="custom-select"
+                    id="inputGroupSelect02"
+                    [(ngModel)]="usuario.role"
+                  >
+                    <option selected>{{ usuario.role }}</option>
+                    <option value="TENDERO">TENDERO</option>
+                    <option value="PARTICULAR-PROD">PARTICULAR-PROD</option>
+                    <option value="PARTICULAR-SERV">PARTICULAR-SERV</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                  </select>
+                </div>
+              </td>
+              <td>{{ usuario.email }}</td>
+              <td>{{ usuario.telefono }}</td>
+
+              <td>
+                <img
+                  (click)="change(usuario.image)"
+                  src="{{ url + 'user/avatar/' + usuario.image }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine1)"
+                  src="{{ url + 'user/avatar/' + usuario.ine1 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+              <td>
+                <img
+                  (click)="change(usuario.ine2)"
+                  src="{{ url + 'user/avatar/' + usuario.ine2 }}"
+                  class="img-thumbnail"
+                  style="width: 50px; height: 50px"
+                />
+              </td>
+
+              <td>
+                <span class="btn btn-warning mr-5" (click)="update(usuario)"
+                  ><i class="fas fa-edit"></i
+                ></span>
+              </td>
+              <td>
+                <span class="btn btn-danger" (click)="eliminar(usuario.id)"
+                  ><i class="fas fa-trash-alt"></i
+                ></span>
+              </td>
+              </ng-container
+              >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+    class="tab-pane fade"
+    id="cliente"
+    role="tabpanel"
+    aria-labelledby="contact-tab"
+  >
+    <div class="table-responsive-sm mx-5">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">ROL</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Punteo</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">INE (frente)</th>
+            <th scope="col">INE (reverso)</th>
+            <th scope="col"><span class="ml-5">Acción</span></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of user">
+            <ng-container *ngIf="usuario.role=='CLIENTE'">
+              <td>{{ usuario.id }}</td>
+            <td>{{ usuario.name }}</td>
+            <td>{{ usuario.surname }}</td>
+            <td>
+              <div class="input-group mb-3">
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect02"
+                  [(ngModel)]="usuario.role"
+                >
+                  <option selected>{{ usuario.role }}</option>
+                  <option value="TENDERO">TENDERO</option>
+                  <option value="PARTICULAR-PROD">PARTICULAR-PROD</option>
+                  <option value="PARTICULAR-SERV">PARTICULAR-SERV</option>
+                  <option value="CLIENTE">CLIENTE</option>
+                </select>
+              </div>
+            </td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefono }}</td>
+            <td>
+              <!-- <i class="fas fa-star text-warning"  *ngFor="let item of [].constructor(+usuario.punteo); let i = index"></i> -->
+              <div class="input-group mb-3">
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect02"
+                  [(ngModel)]="usuario.punteo"
+                >
+                  <option selected>{{ usuario.punteo }}</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <img
+                (click)="change(usuario.image)"
+                src="{{ url + 'user/avatar/' + usuario.image }}"
+                class="img-thumbnail"
+                style="width: 50px; height: 50px"
+              />
+            </td>
+            <td>
+              <img
+                (click)="change(usuario.ine1)"
+                src="{{ url + 'user/avatar/' + usuario.ine1 }}"
+                class="img-thumbnail"
+                style="width: 50px; height: 50px"
+              />
+            </td>
+            <td>
+              <img
+                (click)="change(usuario.ine2)"
+                src="{{ url + 'user/avatar/' + usuario.ine2 }}"
+                class="img-thumbnail"
+                style="width: 50px; height: 50px"
+              />
+            </td>
+
+            <td>
+              <span class="btn btn-warning mr-5" (click)="update(usuario)"
+                ><i class="fas fa-edit"></i
+              ></span>
+            </td>
+            <td>
+              <span class="btn btn-danger" (click)="eliminar(usuario.id)"
+                ><i class="fas fa-trash-alt"></i
+              ></span>
+            </td>
+            </ng-container
+            >
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  </div>
+</div>
+<!-- The Modal -->
+<div #myModal class="modal">
+  <span class="close" (click)="cerrar()">&times;</span>
+  <img class="modal-content" #img01 />
 </div>

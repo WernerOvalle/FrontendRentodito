@@ -1,15 +1,15 @@
 <div  class="container mt-5">
   <div class="row">
-    <div class="col-12 col-lg-4 col-xl-6" *ngFor="let art of articulos2">
+    <div class="col-12 col-lg-4 col-xl-6" *ngFor="let art of articulos">
       <div class="card-deck">
-        <div class="card" style="width: 18em" *ngIf="art.user">
+        <div class="card" style="width: 18em">
           <img
             class="card-img-top"
             src="{{ url + 'articulos/image/' + art.image }}"
             alt="Card image cap"
           />
           <div class="card-body">
-            <h5 class="card-title">{{ art.title }}</h5>
+            <h5 class="card-title">Articulo - {{ art.title }} </h5>
             <p class="card-text">{{ art.content }}</p>
           </div>
           <ul class="list-group list-group-flush">
@@ -17,9 +17,9 @@
               Tienda: <strong>{{art.tiendas.id+' - '+art.tiendas.name }}</strong>  Estado: <br>
               {{ art.tiendas.description }}
             </li>
-            <li class="list-group-item">
-              Usuario:<strong> {{ art.user.name+' '+art.user.surname }}</strong>
-                 </li>
+            <li class="list-group-item" *ngIf="!art.tienda_id">
+             Usuario:<strong> {{ art.user.name+' '+art.user.surname }}</strong>
+                </li>
           </ul>
           <div class="card-body">
             <a (click)="reservar(art)" *ngIf="art.apartado==0"class="btn btn-primary">Reservar</a>
@@ -28,7 +28,22 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="col-12 col-lg-4 col-xl-6" *ngFor="let ser of Servicios">
+      <div class="card-deck">
+        <div class="card" style="width: 18em">
+          <img
+            class="card-img-top"
+            src="{{ url + 'articulos/image/' + ser.image }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Servicio - {{ ser.title }} </h5>
+            <p class="card-text">{{ ser.content }}</p>
+          </div>
 
-  <!-- /#page-content-wrapper -->
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

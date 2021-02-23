@@ -18,7 +18,7 @@ export class TiendasDetailComponent implements OnInit {
     private _tiendaService: TiendasService,
     private _router: Router
   ) {
-    this.tienda = new Tienda(1, '', '', '');
+    this.tienda = new Tienda(1, '', '','', '');
     console.log(this.ide2);
   }
 

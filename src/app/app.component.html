@@ -146,7 +146,7 @@
               >Mantenimiento <br />
               Usuarios</a
             >
-            <a *ngIf="identity.role=='_ADMINISTRADOR_' || identity.role=='PARTICULAR-SERV'"  class="dropdown-item" [routerLink]="['/crear-servicio']"
+            <a *ngIf=" identity.role=='PARTICULAR-SERV'"  class="dropdown-item" [routerLink]="['/crear-servicio']"
               >Mantenimiento <br />
               Servicios</a
             >
@@ -159,7 +159,7 @@
               >Mantenimiento <br />
               Categorias</a
             >
-            <a *ngIf="identity.role=='_ADMINISTRADOR_' || identity.role=='TENDERO'|| identity.role=='PARTICULAR-PROD'"class="dropdown-item" [routerLink]="['/crear-articulo']"
+            <a *ngIf="identity.role=='TENDERO'|| identity.role=='PARTICULAR-PROD'"class="dropdown-item" [routerLink]="['/crear-articulo']"
               >Mantenimiento <br />
               Articulos</a
             >
@@ -177,7 +177,7 @@
       style="margin-top: -10px; position: absolute;"
     >
       <div class="input-group-prepend">
-        <button class="btn btn-secondary" type="button" id="button-addon1">
+        <button class="btn btn-secondary" type="button" id="button-addon1"  [routerLink]="['/list-search',nameinput]">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -187,6 +187,8 @@
         placeholder=""
         aria-label="Example text with button addon"
         aria-describedby="button-addon1"
+        #name="ngModel"
+        [(ngModel)]="nameinput"
       />
     </div>
 </div>
@@ -219,7 +221,7 @@
               <button
                 type="button"
                 class="btn btn-primary btn-lg"
-                [routerLink]="['/login']"
+                [routerLink]="['/login']"(click)="modalhide()"
               >
                 Inicia Sesión
               </button>
@@ -228,7 +230,7 @@
               <button
                 type="button"
                 class="btn btn-secondary btn-lg"
-                [routerLink]="['/register']"
+                [routerLink]="['/register']" (click)="modalhide()"
               >
                 Registrate
               </button>
@@ -268,7 +270,7 @@
               <button
                 type="button"
                 class="btn btn-primary btn-lg"
-                [routerLink]="['/Particulares-productos']"
+                [routerLink]="['/Particulares-productos']" (click)="modalhide()"
               >
                Productos
               </button>
@@ -277,7 +279,7 @@
               <button
                 type="button"
                 class="btn btn-secondary btn-lg"
-                [routerLink]="['/Particulares-servicios']"
+                [routerLink]="['/Particulares-servicios']" (click)="modalhide()"
               >
                Servicios
               </button>

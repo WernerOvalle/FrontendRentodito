@@ -33,6 +33,7 @@ import { ServiciosNewComponent } from './components/servicios-new/servicios-new.
 import { TiendasDetailComponent } from './components/tiendas-detail/tiendas-detail.component';
 import { ParticularesServiciosComponent } from './components/particulares-servicios/particulares-servicios.component';
 import { ParticularesProductosComponent } from './components/particulares-productos/particulares-productos.component';
+import { ListadoBusquedaComponent } from './components/listado-busqueda/listado-busqueda.component';
 
 
 
@@ -62,6 +63,7 @@ import { ParticularesProductosComponent } from './components/particulares-produc
     TiendasDetailComponent,
     ParticularesServiciosComponent,
     ParticularesProductosComponent,
+    ListadoBusquedaComponent,
 
 
   ],

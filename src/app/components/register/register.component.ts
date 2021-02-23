@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     hideResetBtn: true,
     hideSelectBtn: false,
     replaceTexts: {
-      attachPinBtn: 'Foto...',
+      attachPinBtn: 'Selfie...',
     },
   };
   public afuConfig2 = {

@@ -25,6 +25,7 @@ import { CrearArticulosComponent } from './components/crear-articulos/crear-arti
 import { TiendasDetailComponent } from './components/tiendas-detail/tiendas-detail.component';
 import { ParticularesServiciosComponent } from './components/particulares-servicios/particulares-servicios.component';
 import { ParticularesProductosComponent } from './components/particulares-productos/particulares-productos.component';
+import { ListadoBusquedaComponent } from './components/listado-busqueda/listado-busqueda.component';
 //definir ruts
 const appRoutes: Routes = [
   { path: 'inicio', component: PrincipalComponent },
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
   { path: 'crear-articulo', component: CrearArticulosComponent },
   { path: 'crear-categoria', component: CategoryNewComponent },
   { path: 'crear-tienda', component: TiendasNewComponent },
+  { path: 'list-search/:name', component: ListadoBusquedaComponent },
  /* { path: 'tiendas-detail/:id', component: TiendasDetailComponent },*/
  { path: 'Particulares-servicios', component: ParticularesServiciosComponent },
  { path: 'Particulares-productos', component: ParticularesProductosComponent },

@@ -17,6 +17,7 @@ export class CategoryNewComponent implements OnInit {
   public identity;
   public token;
   public category: Category;
+  public category2;
   public status: string;
 
   public categories;
@@ -37,8 +38,8 @@ export class CategoryNewComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(  this.category);
-   this._categoryService.create(this.token, this.category).subscribe(
+    console.log(this.category);
+    this._categoryService.create(this.token, this.category).subscribe(
       (response) => {
         if (response.status == 'success') {
           this.category = response.category;
@@ -47,10 +48,10 @@ export class CategoryNewComponent implements OnInit {
             title: 'Categoria Guardada Existosamente',
             icon: 'success',
             confirmButtonText: 'Aceptar',
-          }).then(function() {
-            window.location.reload();
-        });
-
+          }).then(function () {
+            /*  window.location.reload();*/
+          });
+          this.getCategories();
         } else {
           this.status = 'error';
           Swal.fire({
@@ -62,31 +63,101 @@ export class CategoryNewComponent implements OnInit {
         }
       },
       (error) => {
-
         this.status = 'error';
         Swal.fire({
           title: <any>error,
           text: this.status,
           icon: 'error',
           confirmButtonText: 'Aceptar',
-        }
-        );
+        });
         //console.log(<any>error);
       }
     );
   }
 
-  getCategories(){
+  getCategories() {
     this._categoryService.getCategories().subscribe(
-      response=>{
-        if(response.status=="success"){
-          this.categories =response.categories;
+      (response) => {
+        if (response.status == 'success') {
+          this.categories = response.categories;
           //console.log(this.categories)
         }
       },
-      error=>{
+      (error) => {
         console.log(error);
       }
-    )
+    );
+  }
+
+  onSubmit2(form) {
+    //console.log( this.category2);
+    this._categoryService
+      .udpate(this.token, this.category2, this.category2.id)
+      .subscribe(
+        (response) => {
+          if (response.status == 'success') {
+            //this.Articulo = response.changes;
+            this.status = 'success';
+            Swal.fire({
+              title: 'Articulo Actualizado Existosamente',
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+            }).then(function () {});
+            this.getCategories();
+          } else {
+            this.status = 'error';
+            Swal.fire({
+              title: 'Error al guardar Categoria',
+              text: this.status,
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+            });
+          }
+        },
+        (error) => {
+          this.status = 'error';
+          Swal.fire({
+            title: <any>error,
+            text: this.status,
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+          });
+          //console.log(<any>error);
+        }
+      );
+  }
+  actualizarModel(category) {
+    this.category2 = JSON.parse(JSON.stringify(category));
+    console.log(this.category2);
+  }
+  eliminar(id) {
+    Swal.fire({
+      title: '¿Estas seguro de eliminar?',
+      text: 'Tu no podras revertir esta accion luego de confirmar',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Confirmar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._categoryService.delete(this.token, id).subscribe(
+          (response) => {
+            Swal.fire(
+              'Eliminado!',
+              'El registro fue eliminado exitosamente',
+              'success'
+            );
+
+            this.getCategories();
+          },
+          (error) => {
+            Swal.fire('Error!', 'Error al eliminar', 'error');
+            console.log(error);
+          }
+        );
+      }
+    });
   }
 }
