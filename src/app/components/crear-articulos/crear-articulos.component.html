@@ -279,8 +279,8 @@
                 [showIcon]="true"
               />
             </div>
-            <label for="inputGroupSelect02">Tienda</label>
-            <div class="input-group mb-3">
+            <div class="form-group col-12" *ngIf="identity.tienda_id">
+              <label for="inputGroupSelect02">Tienda</label>
               <select
                 class="custom-select"
                 id="inputGroupSelect02"

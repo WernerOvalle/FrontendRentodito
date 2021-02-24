@@ -84,7 +84,7 @@ public afuConfig1 = {
             icon: 'success',
             confirmButtonText: 'Aceptar',
           }).then(function() {
-         /*   window.location.reload();*/
+            window.location.reload();
         });
 
         } else {

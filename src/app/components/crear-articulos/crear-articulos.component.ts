@@ -104,7 +104,7 @@ export class CrearArticulosComponent implements OnInit {
     //delete this.Articulo.user_id;
     if (this.validacion1 == 1) {
      if(this.identity.tienda_id==null){
-   this.Articulo.tienda_id=null;
+   delete this.Articulo.tienda_id
       }
 
       this._arituclosService.create(this.token, this.Articulo).subscribe(
@@ -117,7 +117,7 @@ export class CrearArticulosComponent implements OnInit {
               icon: 'success',
               confirmButtonText: 'Aceptar',
             }).then(function () {
-              window.location.reload();
+            //  window.location.reload();
             });
             this.getArticulos();
           } else {
@@ -201,8 +201,10 @@ export class CrearArticulosComponent implements OnInit {
     delete this.articulos2.categorias;
     delete this.articulos2.tiendas;
     delete this.articulos2.user;
-
-    console.log( this.articulos2);
+    if(this.identity.tienda_id==null){
+      delete this.articulos2.tienda_id
+         }
+    //console.log( this.articulos2);
     this._arituclosService
       .udpate(this.token, this.articulos2, this.articulos2.id)
       .subscribe(

@@ -72,11 +72,14 @@ public cliente;
   }
 
   reservar(art2) {
+
     let articuloReserva = JSON.parse(JSON.stringify(art2));
     delete articuloReserva.categorias;
     delete articuloReserva.tiendas;
     delete articuloReserva.user;
-
+    if(articuloReserva.tienda_id==null){
+      delete articuloReserva.tienda_id;
+    }
     let that = this;
     Swal.fire({
       title: '<strong>Ingrese la fecha que recogerá el producto</strong>',

@@ -105,7 +105,7 @@ export class UserNewComponent implements OnInit {
           //this.Articulo = response.changes;
           this.status = 'success';
           Swal.fire({
-            title: 'Articulo Actualizado Existosamente',
+            title: 'Usuario Actualizado Existosamente',
             icon: 'success',
             confirmButtonText: 'Aceptar',
           }).then(function () {});

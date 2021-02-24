@@ -56,7 +56,7 @@ export class TiendasService {
     }else{
      url2 ='tiendas/'+id;
     }
-console.log(url2)
+//console.log(url2)
       return this._http.get(this.url + url2,  { headers: headers });
 
   }

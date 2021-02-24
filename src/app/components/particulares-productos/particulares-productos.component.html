@@ -1,9 +1,69 @@
-<div  class="container mt-5">
-  <div class="row">
-    <div class="col-12 col-lg-4 col-xl-6" *ngFor="let art of articulos2">
-      <div class="card-deck">
-        <div class="card" style="width: 18em" *ngIf="art.user">
-          <img
+
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <div class="border-right sidebarColor" id="sidebar-wrapper">
+    <div class="sidebar-heading"><strong>CATEGORIAS</strong></div>
+    <div class="list-group list-group-flush">
+      <a
+        (click)="clickAddTodo(category.id)"
+        class="list-group-item list-group-item-action sidebarColor h6"
+        style="cursor: pointer"
+        *ngFor="let category of categories"
+        >{{ category.name }}</a
+      >
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <nav class="navbar d-block d-md-none navbar-light bg-light border-bottom">
+      <button class="btn btn-primary" id="menu-toggle">
+        <i class="fas fa-outdent"></i>
+      </button>
+
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </div> -->
+    </nav>
+
+    <div *ngIf="menu == 0" class="container-fluid">
+      <img
+        src="../../../assets/fondoArticulos2.jpg"
+        class="img-fluid"
+        style="width: 90%"
+        alt="..."
+      />
+    </div>
+    <div *ngIf="menu == 1" class="container mt-5">
+      <div class="row">
+        <ng-container *ngFor="let art of articulos2">
+        <div class="col-12 col-lg-4 col-xl-6" *ngIf="art.user">
+          <div class="card-deck" >
+            <div class="card" style="width: 18em">
+              <img
             class="card-img-top"
             src="{{ url + 'articulos/image/' + art.image }}"
             alt="Card image cap"
@@ -13,22 +73,27 @@
             <p class="card-text">{{ art.content }}</p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngIf="art.tienda_id">
+            <!-- <li class="list-group-item" *ngIf="art.tienda_id">
               Tienda: <strong>{{art.tiendas.id+' - '+art.tiendas.name }}</strong>  Estado: <br>
               {{ art.tiendas.description }}
-            </li>
+            </li> -->
             <li class="list-group-item">
               Usuario:<strong> {{ art.user.name+' '+art.user.surname }}</strong>
                  </li>
           </ul>
-          <div class="card-body">
-            <a (click)="reservar(art)" *ngIf="art.apartado==0"class="btn btn-primary">Reservar</a>
-            <button  *ngIf="art.apartado==1"class="btn btn-secondary" disabled>Reservado</button>
+              <div class="card-body">
+                <a (click)="reservar(art)" *ngIf="art.apartado==0"class="btn btn-primary">Reservar</a>
+                <button  *ngIf="art.apartado==1"class="btn btn-secondary" disabled>Reservado</button>
+              </div>
+            </div>
           </div>
         </div>
+      </ng-container>
       </div>
+
+      <!-- /#page-content-wrapper -->
     </div>
   </div>
-
-  <!-- /#page-content-wrapper -->
 </div>
+
+

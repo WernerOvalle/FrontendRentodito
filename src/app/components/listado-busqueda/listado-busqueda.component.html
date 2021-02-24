@@ -14,7 +14,7 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngIf="art.tienda_id">
-              Tienda: <strong>{{art.tiendas.id+' - '+art.tiendas.name }}</strong>  Estado: {{art.tiendas.estado }} <br>
+              Tienda: <strong>{{art.tiendas.name }}</strong>  Estado:<strong>  {{art.tiendas.estado }} </strong> <br>
               {{ art.tiendas.description }}
             </li>
             <li class="list-group-item" *ngIf="!art.tienda_id">
