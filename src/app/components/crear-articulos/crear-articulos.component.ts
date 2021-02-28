@@ -104,7 +104,7 @@ export class CrearArticulosComponent implements OnInit {
     //delete this.Articulo.user_id;
     if (this.validacion1 == 1) {
      if(this.identity.tienda_id==null){
-   delete this.Articulo.tienda_id
+  this.Articulo.tienda_id=null
       }
 
       this._arituclosService.create(this.token, this.Articulo).subscribe(

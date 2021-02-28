@@ -60,8 +60,8 @@
     <div *ngIf="menu == 1" class="container mt-5">
       <div class="row">
         <ng-container *ngFor="let art of articulos2">
-        <div class="col-12 col-lg-4 col-xl-6" *ngIf="art.user">
-          <div class="card-deck" >
+        <div class="col-12 col-lg-4 col-xl-4 " *ngIf="art.user &&categoriaid==art.categoria_id">
+          <div class="card-deck mt-5" >
             <div class="card" style="width: 18em">
               <img
             class="card-img-top"
@@ -81,7 +81,7 @@
               Usuario:<strong> {{ art.user.name+' '+art.user.surname }}</strong>
                  </li>
           </ul>
-              <div class="card-body">
+              <div class="card-body" *ngIf="cliente">
                 <a (click)="reservar(art)" *ngIf="art.apartado==0"class="btn btn-primary">Reservar</a>
                 <button  *ngIf="art.apartado==1"class="btn btn-secondary" disabled>Reservado</button>
               </div>

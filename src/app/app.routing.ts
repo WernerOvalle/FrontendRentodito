@@ -26,6 +26,7 @@ import { TiendasDetailComponent } from './components/tiendas-detail/tiendas-deta
 import { ParticularesServiciosComponent } from './components/particulares-servicios/particulares-servicios.component';
 import { ParticularesProductosComponent } from './components/particulares-productos/particulares-productos.component';
 import { ListadoBusquedaComponent } from './components/listado-busqueda/listado-busqueda.component';
+import {IndetityGuard} from  './services/identity.guard';
 //definir ruts
 const appRoutes: Routes = [
   { path: 'inicio', component: PrincipalComponent },
@@ -39,20 +40,21 @@ const appRoutes: Routes = [
   { path: 'help4', component: Help4Component },
   { path: 'help5', component: Help5Component },
   { path: 'help6', component: Help6Component },
-  { path: 'crear-articulo', component: CrearArticulosComponent },
-  { path: 'crear-categoria', component: CategoryNewComponent },
-  { path: 'crear-tienda', component: TiendasNewComponent },
+  { path: 'crear-articulo', component: CrearArticulosComponent , canActivate: [IndetityGuard]},
+  { path: 'crear-categoria', component: CategoryNewComponent ,canActivate: [IndetityGuard]},
+  { path: 'crear-tienda', component: TiendasNewComponent,canActivate: [IndetityGuard] },
   { path: 'list-search/:name', component: ListadoBusquedaComponent },
  /* { path: 'tiendas-detail/:id', component: TiendasDetailComponent },*/
  { path: 'Particulares-servicios', component: ParticularesServiciosComponent },
  { path: 'Particulares-productos', component: ParticularesProductosComponent },
-  { path: 'crear-servicio', component: ServiciosNewComponent },
-  { path: 'admin-user', component: UserNewComponent },
+  { path: 'crear-servicio', component: ServiciosNewComponent ,canActivate: [IndetityGuard]},
+  { path: 'admin-user', component: UserNewComponent ,canActivate: [IndetityGuard]},
   { path: 'logout/:sure', component: LoginComponent },
-  { path: 'ajustes', component: UserEditComponent },
+  { path: 'ajustes', component: UserEditComponent ,canActivate: [IndetityGuard]},
   { path: 'articulos', component: ArticulosComponent },
   { path: 'tiendas', component: TiendasComponent },
   { path: '**', component: ErrorComponent },
+  { path: 'error', component: ErrorComponent },
 ];
 
 //exportar config

@@ -19,6 +19,7 @@ export class ParticularesProductosComponent implements OnInit {
   public menu;
   public articulos2;
   public cliente;
+  public categoriaid;
   constructor(
     private _categoryService: CategoryService,
     private _articuloService: ArticuloService,
@@ -55,6 +56,7 @@ export class ParticularesProductosComponent implements OnInit {
   clickAddTodo(id) {
     //console.log(id)
     this.menu = 1;
+    this.categoriaid=id;
     this._articuloService.getArticulosByParticular().subscribe(
       (response) => {
         if (response.status == 'success') {

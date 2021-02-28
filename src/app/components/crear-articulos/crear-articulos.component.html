@@ -61,7 +61,12 @@
                   name="description"
                   #description="ngModel"
                   [(ngModel)]="Articulo.content"
-                />
+                  required
+                />    <small
+                *ngIf="!description.valid && description.touched"
+                class="invalid-feedback d-block"
+                >Descripcion del articulo no es válido
+              </small>
               </div>
 
               <div class="form-group col-12" *ngIf="identity.tienda_id">
@@ -252,8 +257,14 @@
                 name="description"
                 #description="ngModel"
                 [(ngModel)]="articulos2.content"
-              />
+                required
+              />  <small
+              *ngIf="!description.valid && description.touched"
+              class="invalid-feedback d-block"
+              >Descripcion del articulo no es válido
+            </small>
             </div>
+
             <label for="inputGroupSelect05">Apartado</label>
             <div class="input-group mb-3">
               <select

@@ -35,6 +35,8 @@ import { ParticularesServiciosComponent } from './components/particulares-servic
 import { ParticularesProductosComponent } from './components/particulares-productos/particulares-productos.component';
 import { ListadoBusquedaComponent } from './components/listado-busqueda/listado-busqueda.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {IndetityGuard} from  './services/identity.guard';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() , AngularFileUploaderModule,
   ],
   providers: [
+    IndetityGuard,
+    UserService,
     appRoutingProviders,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
